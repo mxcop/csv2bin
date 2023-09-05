@@ -38,7 +38,7 @@ fn parse() -> Result<(), Box<dyn Error>> {
         let record = result?;
         for num in record.iter() {
             let num = num.parse::<i16>().unwrap_or(0);
-            buf.push(num.max(0) as u8);
+            buf.push(num.max(0).min(254) as u8);
         }
         buf.push(255u8/* Newline */);
     }
